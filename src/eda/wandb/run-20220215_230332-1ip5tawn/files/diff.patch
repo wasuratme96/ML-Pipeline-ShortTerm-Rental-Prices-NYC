@@ -1,0 +1,79 @@
+diff --git a/.DS_Store b/.DS_Store
+index 5008ddf..0521e33 100644
+Binary files a/.DS_Store and b/.DS_Store differ
+diff --git a/README.md b/README.md
+index a8f071b..e01da66 100644
+--- a/README.md
++++ b/README.md
+@@ -1,7 +1,7 @@
+ # Build an ML Pipeline for Short-Term Rental Prices in NYC
+ You are working for a property management company renting rooms and properties for short periods of 
+ time on various rental platforms. You need to estimate the typical price for a given property based 
+-on the price of similar properties. Your company receives new data in bulk every week. The model needs 
++on the price of ๒similar properties. Your company receives new data in bulk every week. The model needs 
+ to be retrained with the same cadence, necessitating an end-to-end pipeline that can be reused.
+ 
+ In this project you will build such a pipeline.
+diff --git a/conda.yml b/conda.yml
+index 220ec0b..e6b5ae7 100644
+--- a/conda.yml
++++ b/conda.yml
+@@ -3,6 +3,7 @@ channels:
+   - conda-forge
+   - defaults
+ dependencies:
++  - python=3.8
+   - mlflow=1.14.1
+   - pyyaml=5.3.1
+   - hydra-core=1.0.6
+diff --git a/main.py b/main.py
+index 9abc5bb..be1f145 100644
+--- a/main.py
++++ b/main.py
+@@ -32,6 +32,10 @@ def go(config: DictConfig):
+     steps_par = config['main']['steps']
+     active_steps = steps_par.split(",") if steps_par != "all" else _steps
+ 
++
++    # Get root director of where MLproject on main script is sitting
++    root_path = hydra.utils.get_original_cwd()
++
+     # Move to a temporary directory
+     with tempfile.TemporaryDirectory() as tmp_dir:
+ 
+@@ -49,10 +53,19 @@ def go(config: DictConfig):
+             )
+ 
+         if "basic_cleaning" in active_steps:
+-            ##################
+-            # Implement here #
+-            ##################
+-            pass
++            _ = mlflow.run(
++                os.path.join(root_path, "src", "basic_cleaning"),
++                "main",
++                paramerters={
++                    "tmp_direectory": tmp_dir,
++                    "input_artifact": "sample.csv:latest",
++                    "output_artifact": "clean_sample.csv",
++                    "output_type" : "clean_data",
++                    "output_description" : "Data with outliers and null values removed",
++                    "min_price" : config['etl']['min_price'],
++                    "max_price" : config['etl']['max_price']
++                }
++            )
+ 
+         if "data_check" in active_steps:
+             ##################
+diff --git a/src/eda/conda.yml b/src/eda/conda.yml
+index 2411369..890d5e4 100644
+--- a/src/eda/conda.yml
++++ b/src/eda/conda.yml
+@@ -3,6 +3,7 @@ channels:
+   - conda-forge
+   - defaults
+ dependencies:
++  - python=3.8
+   - jupyterlab=3.0.12
+   - seaborn=0.11.1
+   - pandas=1.2.3

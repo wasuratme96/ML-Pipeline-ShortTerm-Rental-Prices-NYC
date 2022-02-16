@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/wasuratsoontronchai/Documents/GitHub/ML-Pipeline-ShortTerm-Rental-Prices-NYC/mlruns/0/31bfae0850bc4b568a58201f9e32ce39/artifacts
+end_time: 1644938899590
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+name: ''
+run_id: 31bfae0850bc4b568a58201f9e32ce39
+run_uuid: 31bfae0850bc4b568a58201f9e32ce39
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1644938764217
+status: 3
+tags: []
+user_id: wasuratsoontronchai

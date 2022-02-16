@@ -1,0 +1,24 @@
+{
+    "os": "macOS-10.16-x86_64-i386-64bit",
+    "python": "3.8.12",
+    "heartbeatAt": "2022-02-15T16:03:34.127160",
+    "startedAt": "2022-02-15T16:03:32.568032",
+    "docker": null,
+    "cpu_count": 16,
+    "cuda": null,
+    "args": [
+        "-f",
+        "/Users/wasuratsoontronchai/Library/Jupyter/runtime/kernel-ee5e262c-4edd-49dc-8d7e-630c6004c6de.json"
+    ],
+    "state": "running",
+    "program": "EDA.ipynb",
+    "root": "/Users/wasuratsoontronchai/Documents/GitHub/ML-Pipeline-ShortTerm-Rental-Prices-NYC",
+    "git": {
+        "remote": "https://github.com/wasuratme96/ML-Pipeline-ShortTerm-Rental-Prices-NYC.git",
+        "commit": "aea2b6403ac90368b64e1363304d3611b4d6e2ff"
+    },
+    "email": "wasurat_me96@outlook.com",
+    "host": "Wasurats-MacBook-Pro.local",
+    "username": "wasuratsoontronchai",
+    "executable": "/Users/wasuratsoontronchai/opt/anaconda3/envs/mlflow-e0c29139ab6c03afd7cfa3750d7102440d70352d/bin/python"
+}
