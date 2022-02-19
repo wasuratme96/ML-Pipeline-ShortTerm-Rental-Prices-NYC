@@ -42,7 +42,7 @@ def go(config: DictConfig):
         if "download" in active_steps:
             # Download file and load in W&B
             _ = mlflow.run(
-                f"{config['main']['components_repository']}/get_data",
+                os.path.join(root_path,"components", "get_data"),
                 "main",
                 parameters={
                     "sample": config["etl"]["sample"],
@@ -81,7 +81,7 @@ def go(config: DictConfig):
 
         if "data_split" in active_steps:
             _ = mlflow.run(
-                f"{config['main']['components_repository']}/train_val_test_split", 
+                os.path.join(root_path,"components", "train_val_test_split"), 
                 "main",
                 parameters = {
                     "input" : "clean_sample.csv:latest",
@@ -119,7 +119,7 @@ def go(config: DictConfig):
 
         if "test_regression_model" in active_steps:
             _ = mlflow.run(
-                f"{config['main']['components_repository']}/test_regression_model",
+                os.path.join(root_path,"components", "test_regression_model"),
                 "main",
                 parameters = {
                     "mlflow_model" : "random_forest_export:prod",
