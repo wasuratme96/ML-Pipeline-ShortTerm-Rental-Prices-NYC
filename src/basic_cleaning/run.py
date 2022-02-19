@@ -27,9 +27,14 @@ def go(args):
     df = pd.read_csv(artifact_local_path)
 
     # Drop outliers from dataset
+    ## Price
     logger.info("Drop outliers from dataset")
     idx_price = df["price"].between(args.min_price, args.max_price)
     df = df[idx_price].copy()
+
+    ## longitude
+    idx = df['longitude'].between(-74.25, -73.50) & df['latitude'].between(40.5, 41.2)
+    df = df[idx].copy()
 
     # Save cleaned data
     logger.info("Cleaned data saving")
