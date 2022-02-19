@@ -8,7 +8,7 @@ In this project you will build such a pipeline.
 
 ## Weight and Bias Project Source
 To follow along the result of running for this project you can click on this below link <br/>
-[WandB](https://wandb.ai/wasuratfirst/nyc_airbnb/groups/test_inference/workspace?workspac)
+[WandB](https://wandb.ai/wasuratfirst/nyc_airbnb?workspace=user-)
 ![wandbproject](images/wandb_capture.png)
 
 ## Table of contents
